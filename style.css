@@ -18,7 +18,7 @@ h1, h2, h3, .impact-text, .meme-header, .cult-nav, .warning-text { font-family: 
 /* ======== GLOBAL BACKGROUNDS & GLASS ======== */
 .global-site-bg {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -5;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg');
+    background-image: url('assets/hero.jpg');
     background-size: cover; background-position: center; opacity: 0.35; filter: contrast(120%) grayscale(40%);
 }
 .section-bg {
@@ -26,9 +26,9 @@ h1, h2, h3, .impact-text, .meme-header, .cult-nav, .warning-text { font-family: 
     background-size: cover; background-position: center; background-attachment: fixed; opacity: 0.4; filter: grayscale(10%) contrast(120%);
     mix-blend-mode: luminosity;
 }
-.lore-bg { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg'); opacity: 0.3; }
-.path-bg { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg'); opacity: 0.2; }
-.timetable-bg { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg'); opacity: 0.25; }
+.lore-bg { background-image: url('assets/hero.jpg'); opacity: 0.3; }
+.path-bg { background-image: url('assets/hero.jpg'); opacity: 0.2; }
+.timetable-bg { background-image: url('assets/hero.jpg'); opacity: 0.25; }
 
 .section-hero, .section-lore, .section-goat-path, .section-timetable { position: relative; }
 .content-wrapper { position: relative; z-index: 5; padding: 5vw 10vw; max-width: 1800px; margin: 0 auto; }
@@ -129,8 +129,8 @@ h1, h2, h3, .impact-text, .meme-header, .cult-nav, .warning-text { font-family: 
 .meme-card:hover { transform: skewX(-3deg) scale(1.05); box-shadow: 0 0 30px var(--neon-pink); z-index: 10;}
 
 .card-bg { position: absolute; width:100%; height: 100%; background-size: cover; background-position: center; opacity: 0.2; z-index: -1; }
-.driver-bg { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg'); filter: grayscale(100%); transition: opacity 0.3s;}
-.rival-bg { background-image: url('https://images.unsplash.com/photo-1544620347-c4fd0ebb96ba?q=80'); filter: grayscale(100%); transition: opacity 0.3s;}
+.driver-bg { background-image: url('assets/hero.jpg'); filter: grayscale(100%); transition: opacity 0.3s;}
+.rival-bg { background-image: url('assets/carvalhido.jpg'); filter: grayscale(100%); transition: opacity 0.3s;}
 .meme-card:hover .card-bg { opacity: 0.6; filter: grayscale(0%); }
 
 .meme-header { background: var(--neon-blue); color: #000; padding: 15px; font-size: 1.8rem; letter-spacing: 2px; border-bottom: 2px solid #fff;}
@@ -180,7 +180,7 @@ h1, h2, h3, .impact-text, .meme-header, .cult-nav, .warning-text { font-family: 
 .secret-node-btn { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; border-radius: 50%; background: #222; color: #444; border: 2px dashed #444; cursor: pointer; z-index: 10000; font-family: 'Anton'; font-size: 1.5rem; transition: 0.3s; }
 .secret-node-btn:hover { background: #ff0055; color: #fff; border: none; box-shadow: 0 0 30px #ff0055; }
 .hidden-backrooms { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 99999; align-items: center; justify-content: center; transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden;}
-.backrooms-bg { position: absolute; top:0; left:0; width:100%; height:100%; z-index: -1; background-image: url('https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80'); background-size: cover; opacity: 0.3; filter: sepia(100%) hue-rotate(-50deg) saturate(500%); animation: bgPulse 0.1s infinite alternate; }
+.backrooms-bg { position: absolute; top:0; left:0; width:100%; height:100%; z-index: -1; background-image: url('assets/moreira.jpg'); background-size: cover; opacity: 0.3; filter: sepia(100%) hue-rotate(-50deg) saturate(500%); animation: bgPulse 0.1s infinite alternate; }
 .hidden-backrooms.active { display: flex; transform: translateY(0); }
 .backrooms-content { text-align: center; color: #fff; padding: 4rem; background: rgba(0,0,0,0.8); border: 4px solid #ff0000; box-shadow: 0 0 100px #ff0000; }
 .backrooms-content h1 { font-family: 'Anton'; font-size: 6rem; color: #fff; margin-bottom: 2rem; }
