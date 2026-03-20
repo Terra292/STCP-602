@@ -6,20 +6,61 @@ const stcpHorarios = {
 gsap.registerPlugin(ScrollTrigger);
 let currentAura = 500;
 let isPhonkMode = false;
-let ytPlayer;
 
-// --- 1. YOUTUBE IFRAME API FOR PHONK MUSIC ---
-function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('youtube-player', {
-        height: '200', width: '200',
-        videoId: 'm2HEx33iR5I', // Alternative High-Energy drift phonk
-        playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': 'm2HEx33iR5I' },
-        events: {
-            'onReady': () => console.log("Phonk Audio Engine Ready."),
-            'onError': (e) => console.log("YT Engine Error: ", e.data)
-        }
-    });
+// --- 1. PHONK AUDIO SYNTHESIZER (PULLED FROM THE MATRIX) ---
+class PhonkEngine {
+    constructor() {
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        this.isPlaying = false;
+        this.tempo = 140; 
+        this.lookahead = 25.0; 
+        this.scheduleAheadTime = 0.1; 
+        this.nextNoteTime = 0.0;
+        this.current16thNote = 0;
+        this.timerID = null;
+    }
+    createCowbell(time, freq) {
+        const osc1 = this.ctx.createOscillator(); const osc2 = this.ctx.createOscillator();
+        const gain = this.ctx.createGain(); const filter = this.ctx.createBiquadFilter();
+        osc1.type = 'square'; osc2.type = 'square'; osc1.frequency.value = freq; osc2.frequency.value = freq * 1.48; 
+        filter.type = 'bandpass'; filter.frequency.value = 800;
+        gain.gain.setValueAtTime(1, time); gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
+        osc1.connect(filter); osc2.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination);
+        osc1.start(time); osc2.start(time); osc1.stop(time + 0.3); osc2.stop(time + 0.3);
+    }
+    create808(time) {
+        const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+        osc.frequency.setValueAtTime(150, time); osc.frequency.exponentialRampToValueAtTime(40, time + 0.1);
+        gain.gain.setValueAtTime(2, time); gain.gain.exponentialRampToValueAtTime(0.01, time + 0.8);
+        osc.connect(gain); gain.connect(this.ctx.destination);
+        osc.start(time); osc.stop(time + 0.8);
+    }
+    createHihat(time) {
+        const bufferSize = this.ctx.sampleRate * 0.1; const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0); for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+        const noise = this.ctx.createBufferSource(); noise.buffer = buffer;
+        const filter = this.ctx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 5000;
+        const gain = this.ctx.createGain(); gain.gain.setValueAtTime(0.3, time); gain.gain.exponentialRampToValueAtTime(0.01, time + 0.05);
+        noise.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination); noise.start(time);
+    }
+    nextNote() { const secondsPerBeat = 60.0 / this.tempo; this.nextNoteTime += 0.25 * secondsPerBeat; this.current16thNote++; if (this.current16thNote === 16) this.current16thNote = 0; }
+    scheduleNote(beatNumber, time) {
+        if (beatNumber % 4 === 0) this.create808(time); 
+        if (beatNumber % 2 === 0) this.createHihat(time); 
+        const melody = [540, 0, 540, 0, 600, 0, 540, 480, 540, 0, 0, 600, 540, 0, 480, 0];
+        if(melody[beatNumber]) this.createCowbell(time, melody[beatNumber]);
+    }
+    scheduler() {
+        while (this.nextNoteTime < this.ctx.currentTime + this.scheduleAheadTime) { this.scheduleNote(this.current16thNote, this.nextNoteTime); this.nextNote(); }
+        this.timerID = window.setTimeout(this.scheduler.bind(this), this.lookahead);
+    }
+    play() {
+        if (!this.isPlaying) { this.ctx.resume(); this.isPlaying = true; this.current16thNote = 0; this.nextNoteTime = this.ctx.currentTime + 0.05; this.scheduler(); }
+    }
+    stop() { this.isPlaying = false; window.clearTimeout(this.timerID); }
 }
+
+let phonkEngine = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     initAuraTracker();
@@ -57,16 +98,16 @@ function initPhonkMode() {
             document.body.classList.add('phonk-on');
             btn.innerText = "🛑 PARAR AURA (MUTE) 🛑";
             addAura(99999);
-            // Play Audio robustly
-            if(ytPlayer && ytPlayer.playVideo) {
-                ytPlayer.playVideo();
-            }
+            
+            // Activate Native Synth Audio
+            if(!phonkEngine) phonkEngine = new PhonkEngine();
+            phonkEngine.play();
+            
         } else {
             document.body.classList.remove('phonk-on');
             btn.innerText = "🔥 ATIVAR AURA (PHONK) 🔥";
-            if(ytPlayer && ytPlayer.pauseVideo) {
-                ytPlayer.pauseVideo();
-            }
+            
+            if(phonkEngine) phonkEngine.stop();
         }
     });
 }
