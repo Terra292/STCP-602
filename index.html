@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STCP 602 - The GOAT. O culto oficial da Linha 602. Aura, Phonk, e Viagens Z4 Cordoaria-Aeroporto.">
+    <meta name="keywords" content="STCP, 602, Autocarro, Porto, Aeroporto, Cordoaria, Culto, Phonk, Aura, Moreira">
+    <title>STCP 602 | THE GOAT</title>
+    <!-- Aggressive Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Syncopate:wght@400;700;900&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="phonk-off">
+    <!-- Phonk Music Player (Moved off-screen to bypass browser autoplay blocks) -->
+    <div id="youtube-player-container" style="position:fixed; top:-9999px; left:-9999px; width:200px; height:200px; opacity:0.01;">
+        <div id="youtube-player"></div>
+    </div>
+
+    <!-- GLOBAL SITE BACKGROUND -->
+    <div class="global-site-bg"></div>
+
+    <!-- Glitch Overlays -->
+    <div class="crt-overlay"></div>
+    <div class="glitch-scanlines"></div>
+
+    <canvas id="ambient-canvas"></canvas>
+
+    <div class="floating-aura-counter">
+        <span class="aura-label">AURA DA ROTA</span>
+        <span class="aura-value" id="global-aura">0</span>
+    </div>
+
+    <!-- Secret Switchers -->
+    <button class="secret-node-btn" id="btn-secret">???</button>
+
+    <nav class="cult-nav">
+        <div class="nav-brand">THE <span>602</span> CULT</div>
+        <button id="btn-phonk" class="btn-glitch">🔥 ATIVAR AURA (PHONK) 🔥</button>
+    </nav>
+
+    <main class="smooth-scroll-wrapper" id="main-content">
+        
+        <!-- SECTION 1: THE GOAT -->
+        <section id="hero" class="section-hero gs-parallax">
+            <div class="stcp-real-bg hero-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg')"></div>
+            
+            <div class="hero-content glass-panel">
+                <div class="badge-z4 glitch-text" data-text="A LENDA URBANA Z4">A LENDA URBANA Z4</div>
+                <h1 class="massive-title" data-speed="1.2">
+                    <span class="impact-text">LINHA 602</span><br>
+                    <span class="impact-text outline">THE GOAT.</span>
+                </h1>
+                <h2 class="hero-sub" data-speed="1.4">> 602 TYPE SHII // ROCKET LEAGUE NO ASFALTO</h2>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <div class="scroll-text glitch-text" data-text="DESCER">DESCER</div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE LORE -->
+        <section id="lore" class="section-lore">
+            <div class="section-bg lore-bg"></div>
+            <div class="content-wrapper">
+                <h2 class="section-title glitch-text" data-text="CULTURA & AURA">CULTURA & AURA</h2>
+                
+                <div class="meme-grid">
+                    <!-- SR MOTORISTA -->
+                    <div class="meme-card glass-panel gs-fade-up">
+                        <div class="card-bg driver-bg"></div>
+                        <div class="meme-header">🚀 ROCKET LEAGUE STATUS</div>
+                        <div class="meme-body">
+                            <h3>SR. MOTORISTA</h3>
+                            <p>Os nossos condutores não travam. Eles dão drift. Um autocarro articulado a fazer curvas de 90º na Cordoaria com um autocarro STCP de 18 metros? Rotina. Respeito máximo ao Capitão.</p>
+                            <div class="aura-boost">+5000 AURA</div>
+                        </div>
+                    </div>
+
+                    <!-- 601 RIVALRY -->
+                    <div class="meme-card glass-panel gs-fade-up">
+                        <div class="card-bg rival-bg"></div>
+                        <div class="meme-header">😤 602 vs 601</div>
+                        <div class="meme-body">
+                            <h3>A VERDADE</h3>
+                            <p>A Linha 601 vai para o Aeroporto, ok. Mas falta-lhe alma. A 602 foi forjada na Via Norte. É a sobrevivente da dinastia STCP. O Goat indiscutível.</p>
+                            <button class="aura-loot-btn" style="margin-top:1rem;" onclick="addAura(1000)">FARM AURA</button>
+                        </div>
+                    </div>
+
+                    <!-- N14 DRIFT KING (NEW MEME) -->
+                    <div class="meme-card glass-panel gs-fade-up">
+                        <div class="card-bg driver-bg"></div>
+                        <div class="meme-header">🏎️ A BATALHA DA VIA NORTE</div>
+                        <div class="meme-body">
+                            <h3>N14 DRIFT KING</h3>
+                            <p>Corridas na Via Norte. Ultrapassar BMWs na faixa da direita. O 602 não é um transporte público, é um Fórmula 1 movido a Gás Natural.</p>
+                            <button class="aura-loot-btn danger-btn" style="margin-top:1rem;" onclick="addAura(4000)">+4000 AURA (DRIFT)</button>
+                        </div>
+                    </div>
+
+                    <!-- PADRAO DA LEGUA (NEW MEME) -->
+                    <div class="meme-card glass-panel gs-fade-up">
+                        <div class="card-bg rival-bg"></div>
+                        <div class="meme-header">🗿 SOBREVIVÊNCIA</div>
+                        <div class="meme-body">
+                            <h3>PADRÃO DA LÉGUA</h3>
+                            <p>Entrar no 602 no Padrão da Légua é desporto de alto risco. Apenas os mais fortes conseguem lugar sentado. A seleção natural acontece aqui.</p>
+                            <button class="aura-loot-btn" style="margin-top:1rem;" onclick="addAura(3000)">LOOT SURVIVAL AURA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE FULL GOAT'S PATH -->
+        <section id="mapa" class="section-goat-path">
+            <div class="section-bg path-bg"></div>
+            
+            <div class="content-wrapper">
+                <h2 class="center-title gs-fade-up">THE GOAT'S PATH</h2>
+                
+                <div class="path-timeline">
+                    <!-- Checkpoint 1: CORDOARIA -->
+                    <div class="path-stop gs-fade-up">
+                        <div class="stop-img pane-fx" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b3/Jardim_da_Cordoaria.jpg')"></div>
+                        <div class="stop-data glass-panel">
+                            <h3>1. O BERÇO (CORDOARIA)</h3>
+                            <p>O início do caos. Onde os turistas se misturam com os locais, o motorista verifica a rota, e a turbina do STCP arranca.</p>
+                            <button class="aura-loot-btn" onclick="addAura(1000)">Loot Aura</button>
+                        </div>
+                    </div>
+
+                    <!-- Checkpoint 2: CARVALHIDO -->
+                    <div class="path-stop right gs-fade-up">
+                        <div class="stop-data glass-panel">
+                            <h3>2. CARVALHIDO DRIFT</h3>
+                            <p>A primeira grande prova. Trânsito infernal evitado com mestria através das faixas BUS exclusivas.</p>
+                            <button class="aura-loot-btn" onclick="addAura(2500)">Loot Aura</button>
+                        </div>
+                        <div class="stop-img pane-fx" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7b/Igreja_do_Carvalhido.jpg')"></div>
+                    </div>
+
+                    <!-- Checkpoint 3 (SECRET ENTRY) -->
+                    <div class="path-stop gs-fade-up">
+                        <div class="stop-img mystery-glow pane-fx" style="background-image: url('https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=1000')"></div>
+                        <div class="stop-data glass-panel danger-glass">
+                            <h3 class="red-glitch">3. QUINTA DE MOREIRA</h3>
+                            <p>A paragem opcional de transição quântica. O autocarro passa cá aos domingos? Apenas os verdadeiros fãs (*602 type shii*) sabem o trajeto.</p>
+                            <button class="aura-loot-btn danger-btn" id="enter-moreira">ENTRAR NA QUINTA</button>
+                        </div>
+                    </div>
+
+                    <!-- Checkpoint 4: AEROPORTO -->
+                    <div class="path-stop right gs-fade-up">
+                        <div class="stop-data glass-panel">
+                            <h3>4. ATERRAGEM (AEROPORTO)</h3>
+                            <p>54 minutos cravados. Pistas mundiais. Fim da viagem Z4. O GOAT descansa durante 5 minutos antes da rota inversa.</p>
+                            <button class="aura-loot-btn" onclick="addAura(10000)">Loot Terminal Aura</button>
+                        </div>
+                        <div class="stop-img pane-fx" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80')"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HORARIOS -->
+        <section id="horarios" class="section-timetable">
+            <div class="section-bg timetable-bg"></div>
+            <div class="content-wrapper">
+                <div class="tt-header gs-fade-up">
+                    <h2 class="section-title">A MATRIZ DO CAOS</h2>
+                    <p class="subtitle">Quando o MVP decide aparecer.</p>
+                </div>
+                <div class="matrix-board glass-panel">
+                    <div class="tt-tabs">
+                        <button class="tab-btn active" data-type="uteis">DIAS ÚTEIS</button>
+                        <button class="tab-btn" data-type="sabados">SÁBADOS / DOMINGOS</button>
+                    </div>
+                    <div class="chaos-grid" id="timetable-list"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SECRET ZONE: BACKROOMS OF MOREIRA -->
+    <div id="secret-zone" class="hidden-backrooms">
+        <div class="backrooms-bg"></div>
+        <button id="exit-secret">VOLTAR À REALIDADE</button>
+        <div class="backrooms-content">
+            <h1 class="glitch-text enormous" data-text="QUINTA DE MOREIRA 404">QUINTA DE MOREIRA 404</h1>
+            <p class="warning-text">> AURA INFINITA DETETADA</p>
+            <p class="warning-text">> CONEXÃO PERDIDA COM A CENTRAL STCP</p>
+            <p class="warning-text">> TU NÃO DEVIAS ESTAR AQUI.</p>
+            <div class="endless-aura" id="backroom-aura">999999</div>
+        </div>
+    </div>
+
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
