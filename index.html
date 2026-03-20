@@ -17,11 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body class="phonk-off">
-    <!-- Phonk Music Player (Moved off-screen to bypass browser autoplay blocks) -->
-    <div id="youtube-player-container" style="position:fixed; top:-9999px; left:-9999px; width:200px; height:200px; opacity:0.01;">
-        <div id="youtube-player"></div>
-    </div>
-
     <!-- GLOBAL SITE BACKGROUND -->
     <div class="global-site-bg"></div>
 
@@ -48,7 +43,7 @@
         
         <!-- SECTION 1: THE GOAT -->
         <section id="hero" class="section-hero gs-parallax">
-            <div class="stcp-real-bg hero-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/df/STCP_Bus_01.jpg')"></div>
+            <div class="stcp-real-bg hero-bg" style="background-image: url('assets/hero.jpg')"></div>
             
             <div class="hero-content glass-panel">
                 <div class="badge-z4 glitch-text" data-text="A LENDA URBANA Z4">A LENDA URBANA Z4</div>
@@ -129,7 +124,7 @@
                 <div class="path-timeline">
                     <!-- Checkpoint 1: CORDOARIA -->
                     <div class="path-stop gs-fade-up">
-                        <div class="stop-img pane-fx" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b3/Jardim_da_Cordoaria.jpg')"></div>
+                        <div class="stop-img pane-fx" style="background-image: url('assets/cordoaria.jpg')"></div>
                         <div class="stop-data glass-panel">
                             <h3>1. O BERÇO (CORDOARIA)</h3>
                             <p>O início do caos. Onde os turistas se misturam com os locais, o motorista verifica a rota, e a turbina do STCP arranca.</p>
@@ -144,12 +139,12 @@
                             <p>A primeira grande prova. Trânsito infernal evitado com mestria através das faixas BUS exclusivas.</p>
                             <button class="aura-loot-btn" onclick="addAura(2500)">Loot Aura</button>
                         </div>
-                        <div class="stop-img pane-fx" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7b/Igreja_do_Carvalhido.jpg')"></div>
+                        <div class="stop-img pane-fx" style="background-image: url('assets/carvalhido.jpg')"></div>
                     </div>
 
                     <!-- Checkpoint 3 (SECRET ENTRY) -->
                     <div class="path-stop gs-fade-up">
-                        <div class="stop-img mystery-glow pane-fx" style="background-image: url('https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=1000')"></div>
+                        <div class="stop-img mystery-glow pane-fx" style="background-image: url('assets/moreira.jpg')"></div>
                         <div class="stop-data glass-panel danger-glass">
                             <h3 class="red-glitch">3. QUINTA DE MOREIRA</h3>
                             <p>A paragem opcional de transição quântica. O autocarro passa cá aos domingos? Apenas os verdadeiros fãs (*602 type shii*) sabem o trajeto.</p>
@@ -164,7 +159,7 @@
                             <p>54 minutos cravados. Pistas mundiais. Fim da viagem Z4. O GOAT descansa durante 5 minutos antes da rota inversa.</p>
                             <button class="aura-loot-btn" onclick="addAura(10000)">Loot Terminal Aura</button>
                         </div>
-                        <div class="stop-img pane-fx" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80')"></div>
+                        <div class="stop-img pane-fx" style="background-image: url('assets/aeroporto.jpg')"></div>
                     </div>
                 </div>
             </div>
